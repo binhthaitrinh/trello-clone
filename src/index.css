@@ -19,7 +19,7 @@ html {
 *,
 *:before,
 *:after {
-  box-sizing: interhit;
+  box-sizing: inherit;
 }
 
 html,
