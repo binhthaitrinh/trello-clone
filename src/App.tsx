@@ -1,23 +1,21 @@
 import React from "react";
 import { AppContainer } from "./styles";
+import { Column } from "./Column";
+import { Card } from "./Card";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Column text="To do">
+        <Card text="Generate app scaffold" />
+      </Column>
+      <Column text="In Progress">
+        <Card text="Lean Typescript" />
+      </Column>
+      <Column text="Done">
+        <Card text="Begin to use static typing" />
+      </Column>
+    </AppContainer>
   );
 }
 
