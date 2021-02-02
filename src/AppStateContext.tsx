@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
+import {nanoid} from 'nanoid'
+import { findItemIndexById } from "./utils/findItemIndexById";
 interface Task {
   id: string;
   text: string;
@@ -77,6 +79,8 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       };
     }
     case "ADD_TASK": {
+      const targetLaneIndex = findItemIndexById(state.lists, action.payload.listId)
+      state.lists[targetLaneIndex].tasks.push({id: nanoid(), text: action.payload.text})
       return {
         ...state,
       };
