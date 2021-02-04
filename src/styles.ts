@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 interface DragPreviewContainerProps {
   isHidden?: boolean
+  isPreview?: boolean
 }
 
 export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+transform: ${props => props.isPreview ? "rotate(5deg)" : undefined};
   opacity: ${props => props.isHidden ? 0.3 : 1}
 `
 export const AppContainer = styled.div`
@@ -88,3 +90,13 @@ export const NewItemInput = styled.input`
   padding: 0.5rem 1rem;
   width: 100%;
 `;
+
+export const CustomDragLayerContainer = styled.div`
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100
+`
