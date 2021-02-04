@@ -6,6 +6,7 @@ import { Card } from "./Card";
 import { useItemDrag } from "./useItemDrag";
 import {useDrop} from 'react-dnd'
 import {DragItem} from './DragItem'
+import { isHidden } from "./utils/isHidden";
 
 interface ColumnProps {
   // ? to say that text prop is optional, TypeScript will conclude that text can be undefined, for example: text?: string
@@ -35,7 +36,7 @@ export const Column = ({ text, index, id }: ColumnProps) => {
   const {drag} = useItemDrag({type: "COLUMN", id, index, text})
   drag(drop(ref))
   return (
-    <ColumnContainer ref={ref}>
+    <ColumnContainer ref={ref} isHidden={isHidden(state.draggedItem, "COLUMN", id)}>
       <ColumnTitle>{text}</ColumnTitle>
       {state.lists[index].tasks.map((task) => (
         <Card text={task.text} key={task.id} />
