@@ -4,11 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AppStateProvider } from "./AppStateContext";
+import {HTML5Backend as Backend} from 'react-dnd-html5-backend'
+import {DndProvider} from 'react-dnd';
 
 ReactDOM.render(
+  <DndProvider backend={Backend}>
+
   <AppStateProvider>
     <App />
-  </AppStateProvider>,
+  </AppStateProvider>
+  </DndProvider>,
   document.getElementById("root")
 );
 
