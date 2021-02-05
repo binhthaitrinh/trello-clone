@@ -21,16 +21,34 @@ export const Column = ({ text, index, id , isPreview}: ColumnProps) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const [,drop] = useDrop({
-    accept: "COLUMN",
+    accept: ["COLUMN", "CARD"],
     hover(item: DragItem) {
-      const dragIndex = item.index 
-      const hoverIndex = index 
-      if (dragIndex === hoverIndex) {
-        return
-      }
-      dispatch({type: "MOVE_LIST", payload: {dragIndex, hoverIndex}})
+      if (item.type === 'COLUMN') {
 
-      item.index = hoverIndex
+        const dragIndex = item.index 
+        const hoverIndex = index 
+        if (dragIndex === hoverIndex) {
+          return
+        }
+        dispatch({type: "MOVE_LIST", payload: {dragIndex, hoverIndex}})
+  
+        item.index = hoverIndex
+      }
+      else {
+        const dragIndex = item.index
+        const hoverIndex = 0
+        const sourceColumn = item.columnId 
+        const targetColumn = id 
+        if (sourceColumn === targetColumn) {
+          return
+        }
+        dispatch({
+          type: "MOVE_TASK",
+          payload: {dragIndex, hoverIndex, sourceColumn, targetColumn}
+        })
+        item.index = hoverIndex 
+        item.columnId = targetColumn
+      }
     }
   })
 
