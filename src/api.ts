@@ -1,7 +1,6 @@
 import {AppState} from './AppStateContext'
 
 export const save = (payload: AppState) => {
-    console.log(process.env.REACT_APP_BACKEND_ENDPOINT)
     return fetch(`${process.env.REACT_APP_BACKEND_ENDPOINT}/save`, {
         method: "POST",
         headers: {
